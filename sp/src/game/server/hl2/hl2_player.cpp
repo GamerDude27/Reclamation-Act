@@ -2629,6 +2629,7 @@ int CHL2_Player::GiveAmmo( int nCount, int nAmmoIndex, bool bSuppressSound)
 //-----------------------------------------------------------------------------
 bool CHL2_Player::Weapon_CanUse( CBaseCombatWeapon *pWeapon )
 {
+#ifndef RECLAMATION_ACT
 #ifndef HL2MP	
 	if ( pWeapon->ClassMatches( "weapon_stunstick" ) )
 	{
@@ -2636,6 +2637,7 @@ bool CHL2_Player::Weapon_CanUse( CBaseCombatWeapon *pWeapon )
 			UTIL_Remove( pWeapon );
 		return false;
 	}
+#endif
 #endif
 
 	return BaseClass::Weapon_CanUse( pWeapon );

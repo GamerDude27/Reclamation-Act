@@ -34,12 +34,6 @@ BEGIN_DATADESC( CTripmineGrenade )
 	DEFINE_FIELD( m_posOwner,		FIELD_POSITION_VECTOR ),
 	DEFINE_FIELD( m_angleOwner,	FIELD_VECTOR ),
 
-	// Function Pointers
-	DEFINE_FUNCTION( WarningThink ),
-	DEFINE_FUNCTION( PowerupThink ),
-	DEFINE_FUNCTION( BeamBreakThink ),
-	DEFINE_FUNCTION( DelayDeathThink ),
-
 END_DATADESC()
 
 CTripmineGrenade::CTripmineGrenade()
@@ -60,7 +54,6 @@ void CTripmineGrenade::Spawn( void )
 	SetModel( "models/Weapons/w_slam.mdl" );
 
 
-	m_flCycle		= 0;
 	m_nBody			= 3;
 	m_flDamage		= sk_plr_dmg_tripmine.GetFloat();
 	m_DmgRadius		= sk_tripmine_radius.GetFloat();
@@ -72,14 +65,14 @@ void CTripmineGrenade::Spawn( void )
 
 	m_flPowerUp = gpGlobals->curtime + 2.0;
 	
-	SetThink( PowerupThink );
+	SetThink( &CTripmineGrenade::PowerupThink );
 	SetNextThink( gpGlobals->curtime + 0.2 );
 
 	m_takedamage		= DAMAGE_YES;
 
 	m_iHealth = 1;
 
-	EmitSound( "TripmineGrenade.Charge" );
+	EmitSound( "TripmineGrenade.Place" );
 
 	// Tripmine sits at 90 on wall so rotate back to get m_vecDir
 	QAngle angles = GetLocalAngles();
@@ -94,19 +87,15 @@ void CTripmineGrenade::Precache( void )
 {
 	PrecacheModel("models/Weapons/w_slam.mdl"); 
 
-	PrecacheScriptSound( "TripmineGrenade.Charge" );
-	PrecacheScriptSound( "TripmineGrenade.PowerUp" );
-	PrecacheScriptSound( "TripmineGrenade.StopSound" );
 	PrecacheScriptSound( "TripmineGrenade.Activate" );
-	PrecacheScriptSound( "TripmineGrenade.ShootRope" );
-	PrecacheScriptSound( "TripmineGrenade.Hook" );
+	PrecacheScriptSound( "TripmineGrenade.Place" );
 }
 
 
 void CTripmineGrenade::WarningThink( void  )
 {
 	// set to power up
-	SetThink( PowerupThink );
+	SetThink( &CTripmineGrenade::PowerupThink );
 	SetNextThink( gpGlobals->curtime + 1.0f );
 }
 
@@ -120,7 +109,7 @@ void CTripmineGrenade::PowerupThink( void  )
 		m_bIsLive			= true;
 
 		// play enabled sound
-		EmitSound( "TripmineGrenade.PowerUp" );;
+		EmitSound( "TripmineGrenade.Activate" );;
 	}
 	SetNextThink( gpGlobals->curtime + 0.1f );
 }
@@ -163,7 +152,7 @@ void CTripmineGrenade::MakeBeam( void )
 	}
 
 	// set to follow laser spot
-	SetThink( BeamBreakThink );
+	SetThink( &CTripmineGrenade::BeamBreakThink );
 
 	// Delay first think slightly so beam has time
 	// to appear if person right in front of it
@@ -230,12 +219,12 @@ int CTripmineGrenade::OnTakeDamage_Alive( const CTakeDamageInfo &info )
 	{
 		// disable
 		// Create( "weapon_tripmine", GetLocalOrigin() + m_vecDir * 24, GetAngles() );
-		SetThink( SUB_Remove );
+		SetThink( &CTripmineGrenade::SUB_Remove );
 		SetNextThink( gpGlobals->curtime + 0.1f );
 		KillBeam();
 		return FALSE;
 	}
-	return BaseClass::OnTakeDamage_Alive( info );
+	return OnTakeDamage_Alive( info );
 }
 
 //-----------------------------------------------------------------------------
@@ -247,7 +236,7 @@ void CTripmineGrenade::Event_Killed( const CTakeDamageInfo &info )
 {
 	m_takedamage		= DAMAGE_NO;
 
-	SetThink( DelayDeathThink );
+	SetThink( &CTripmineGrenade::DelayDeathThink );
 	SetNextThink( gpGlobals->curtime + 0.5 );
 
 	EmitSound( "TripmineGrenade.StopSound" );

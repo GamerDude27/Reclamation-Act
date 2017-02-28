@@ -16,7 +16,11 @@
 
 
 #include "basegrenade_shared.h"
+#ifndef RECLAMATION_ACT
 #include "hl2mp/weapon_slam.h"
+#else
+#include "hl2/weapon_slam.h"
+#endif
 
 class CSoundPatch;
 

@@ -56,3 +56,5 @@ config.cfg
 
 *.vpc_crc
 *.filters
+*.pdb
+*.lib

@@ -6165,6 +6165,10 @@ void CBasePlayer::CheatImpulseCommands( int iImpulse )
 #ifdef HL2_EPISODIC
 		// GiveNamedItem( "weapon_magnade" );
 #endif
+#ifdef RECLAMATION_ACT
+		GiveNamedItem( "weapon_slam" );
+		GiveNamedItem( "weapon_stunstick" );
+#endif
 		if ( GetHealth() < 100 )
 		{
 			TakeHealth( 25, DMG_GENERIC );
