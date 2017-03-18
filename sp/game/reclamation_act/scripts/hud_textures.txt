@@ -2,6 +2,38 @@
 {
 	TextureData
 	{
+		"scope43"
+		{
+				"file"		"hud/scope_43"
+				"x"			"0"
+				"y"			"0"
+				"width"		"1024"
+				"height"	"512"
+		}
+		"scope169"
+		{
+				"file"		"hud/scope_169"
+				"x"			"0"
+				"y"			"0"
+				"width"		"1024"
+				"height"	"512"
+		}
+		"scope32"
+		{
+				"file"		"hud/scope_32"
+				"x"			"0"
+				"y"			"0"
+				"width"		"1024"
+				"height"	"512"
+		}
+		"scope1610"
+		{
+				"file"		"hud/scope_1610"
+				"x"			"0"
+				"y"			"0"
+				"width"		"1024"
+				"height"	"512"
+		}
 		"arrow"				[$WIN32]
 		{
 				"file"		"sprites/arrow"

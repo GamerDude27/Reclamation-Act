@@ -1,0 +1,5 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "hud/scope"
+	"$translucent" 1
+}
