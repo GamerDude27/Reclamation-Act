@@ -126,6 +126,10 @@ $Project "Client (Reclamation Act)"
 			$File	"hl2\vgui_rootpanel_hl2.cpp"
 			$File	"episodic\c_npc_puppet.cpp"
 		}
+		$Folder	"RA DLL"
+		{
+			$File	"hud_scope.cpp"
+		}
 	}
 	
 }
