@@ -7,13 +7,18 @@
 
 #include "cbase.h"
 #include "npcevent.h"
+#ifndef RECLAMATION_ACT
 #include "weapon_hl2mpbasebasebludgeon.h"
+#endif
 #include "IEffects.h"
 #include "debugoverlay_shared.h"
 
 #ifndef CLIENT_DLL
 	#include "npc_metropolice.h"
 	#include "te_effect_dispatch.h"
+#ifdef RECLAMATION_ACT
+	#include "weapon_stunstick.h"
+#endif
 #endif
 
 #ifdef CLIENT_DLL
@@ -36,8 +41,10 @@
 
 extern ConVar metropolice_move_and_melee;
 
+#ifndef RECLAMATION_ACT //defined in header file
 #define	STUNSTICK_RANGE				75.0f
 #define	STUNSTICK_REFIRE			0.8f
+#endif
 #define	STUNSTICK_BEAM_MATERIAL		"sprites/lgtning.vmt"
 #define STUNSTICK_GLOW_MATERIAL		"sprites/light_glow02_add"
 #define STUNSTICK_GLOW_MATERIAL2	"effects/blueflare1"
@@ -47,6 +54,7 @@ extern ConVar metropolice_move_and_melee;
 #define CWeaponStunStick C_WeaponStunStick
 #endif
 
+#ifndef RECLAMATION_ACT
 class CWeaponStunStick : public CBaseHL2MPBludgeonWeapon
 {
 	DECLARE_CLASS( CWeaponStunStick, CBaseHL2MPBludgeonWeapon );
@@ -127,11 +135,14 @@ private:
 
 	CNetworkVar( bool, m_bActive );
 };
+#endif
 
 //-----------------------------------------------------------------------------
 // CWeaponStunStick
 //-----------------------------------------------------------------------------
+#ifndef RECLAMATION_ACT
 IMPLEMENT_NETWORKCLASS_ALIASED( WeaponStunStick, DT_WeaponStunStick )
+
 
 BEGIN_NETWORK_TABLE( CWeaponStunStick, DT_WeaponStunStick )
 #ifdef CLIENT_DLL
@@ -144,6 +155,13 @@ END_NETWORK_TABLE()
 
 BEGIN_PREDICTION_DATA( CWeaponStunStick )
 END_PREDICTION_DATA()
+
+#else
+
+IMPLEMENT_SERVERCLASS_ST(CWeaponStunStick, DT_WeaponStunstick)
+	SendPropInt( SENDINFO( m_bActive ), 1, SPROP_UNSIGNED ),
+END_SEND_TABLE()
+#endif
 
 LINK_ENTITY_TO_CLASS( weapon_stunstick, CWeaponStunStick );
 PRECACHE_WEAPON_REGISTER( weapon_stunstick );
@@ -164,6 +182,14 @@ acttable_t	CWeaponStunStick::m_acttable[] =
 };
 
 IMPLEMENT_ACTTABLE(CWeaponStunStick);
+
+#ifdef RECLAMATION_ACT
+BEGIN_DATADESC( CWeaponStunStick )
+
+	DEFINE_FIELD( m_bActive, FIELD_BOOLEAN ),
+
+END_DATADESC()
+#endif
 
 #endif
 

@@ -15,7 +15,13 @@
 #define	WEAPONSLAM_H
 
 #include "basegrenade_shared.h"
+#ifndef RECLAMATION_ACT
 #include "weapon_hl2mpbasehlmpcombatweapon.h"
+#else
+#include "basehlcombatweapon.h"
+
+#define CBaseHL2MPCombatWeapon CBaseHLCombatWeapon
+#endif
 
 enum
 {
@@ -33,6 +39,7 @@ class CWeapon_SLAM : public CBaseHL2MPCombatWeapon
 public:
 	DECLARE_CLASS( CWeapon_SLAM, CBaseHL2MPCombatWeapon );
 
+#ifndef RECLAMATION_ACT
 	DECLARE_NETWORKCLASS(); 
 	DECLARE_PREDICTABLE();
 
@@ -45,6 +52,18 @@ public:
 	CNetworkVar( bool,				m_bThrowSatchel);
 	CNetworkVar( bool,				m_bAttachSatchel);
 	CNetworkVar( bool,				m_bAttachTripmine);
+#else
+	DECLARE_SERVERCLASS();
+	int m_tSlamState;
+	bool m_bDetonatorArmed;
+	bool m_bNeedDetonatorDraw;
+	bool m_bNeedDetonatorHolster;
+	bool m_bNeedReload;
+	bool m_bClearReload;
+	bool m_bThrowSatchel;
+	bool m_bAttachSatchel;
+	bool m_bAttachTripmine;
+#endif
 	float				m_flWallSwitchTime;
 
 	void				Spawn( void );
