@@ -1022,6 +1022,12 @@ void CNPC_CombineDropship::Spawn( void )
 	{
 		m_bWaitForDropoffInput = false;
 	}
+
+	if ( m_hContainer )
+	{
+		m_poseWeapon_Pitch = m_hContainer->LookupPoseParameter( "weapon_pitch" );
+		m_poseWeapon_Yaw = m_hContainer->LookupPoseParameter( "weapon_yaw" );
+	}
 }
 
 //-----------------------------------------------------------------------------
