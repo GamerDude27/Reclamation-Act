@@ -234,7 +234,11 @@ void CZombie::Precache( void )
 {
 	BaseClass::Precache();
 
-	PrecacheModel( "models/zombie/classic.mdl" );
+	if ( STRING(GetModelName()) )
+		PrecacheModel( STRING(GetModelName()) );
+	else
+		PrecacheModel( "models/zombie/classic.mdl" );
+
 	PrecacheModel( "models/zombie/classic_torso.mdl" );
 	PrecacheModel( "models/zombie/classic_legs.mdl" );
 
@@ -482,12 +486,19 @@ void CZombie::SetZombieModel( void )
 
 	if ( m_fIsTorso )
 	{
-		SetModel( "models/zombie/classic_torso.mdl" );
+		if ( STRING(GetModelName()) )
+			SetModel( STRING(GetModelName()) );
+		else 
+			SetModel( "models/zombie/classic_torso.mdl" );
+
 		SetHullType( HULL_TINY );
 	}
 	else
 	{
-		SetModel( "models/zombie/classic.mdl" );
+		if ( STRING(GetModelName()) )
+			SetModel( STRING(GetModelName()) );
+		else 
+			SetModel( "models/zombie/classic.mdl" );
 		SetHullType( HULL_HUMAN );
 	}
 
