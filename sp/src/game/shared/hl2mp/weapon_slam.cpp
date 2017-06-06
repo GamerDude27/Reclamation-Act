@@ -13,7 +13,11 @@
 #if defined( CLIENT_DLL )
 	#include "c_hl2mp_player.h"
 #else
+#ifndef RECLAMATION_ACT
 	#include "hl2mp_player.h"
+#else
+	#include "hl2_player.h"
+#endif
 	#include "grenade_tripmine.h"
 	#include "grenade_satchel.h"
 	#include "entitylist.h"
@@ -25,8 +29,14 @@
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
+#ifdef RECLAMATION_ACT
+#define CHL2MP_Player CHL2_Player
+#define ToHL2MPPlayer dynamic_cast<CHL2_Player*>
+#endif
+
 #define	SLAM_PRIMARY_VOLUME		450
 
+#ifndef RECLAMATION_ACT
 IMPLEMENT_NETWORKCLASS_ALIASED( Weapon_SLAM, DT_Weapon_SLAM )
 
 BEGIN_NETWORK_TABLE( CWeapon_SLAM, DT_Weapon_SLAM )
@@ -67,6 +77,10 @@ BEGIN_PREDICTION_DATA( CWeapon_SLAM )
 	DEFINE_PRED_FIELD( m_bAttachTripmine, FIELD_BOOLEAN, FTYPEDESC_INSENDTABLE ),
 END_PREDICTION_DATA()
 
+#endif
+#else
+IMPLEMENT_SERVERCLASS_ST(CWeapon_SLAM, DT_Weapon_SLAM)
+END_SEND_TABLE()
 #endif
 
 LINK_ENTITY_TO_CLASS( weapon_slam, CWeapon_SLAM );

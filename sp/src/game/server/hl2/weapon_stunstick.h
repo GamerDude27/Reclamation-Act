@@ -53,6 +53,7 @@ public:
 private:
 
 	CNetworkVar( bool, m_bActive );
+
 };
 
 #endif // WEAPON_STUNSTICK_H

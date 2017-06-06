@@ -11,6 +11,7 @@
 // $NoKeywords: $
 //=============================================================================//
 
+#ifndef RECLAMATION_ACT
 #ifndef	WEAPONSLAM_H
 #define	WEAPONSLAM_H
 #ifndef HL2MP
@@ -81,3 +82,4 @@ public:
 
 #endif  //HL2MP
 #endif	//WEAPONSLAM_H
+#endif	//RECLAMATION_ACT
