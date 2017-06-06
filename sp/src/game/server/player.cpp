@@ -6168,6 +6168,7 @@ void CBasePlayer::CheatImpulseCommands( int iImpulse )
 #ifdef RECLAMATION_ACT
 		GiveNamedItem( "weapon_slam" );
 		GiveNamedItem( "weapon_stunstick" );
+		GiveNamedItem( "weapon_binoculars" );
 #endif
 		if ( GetHealth() < 100 )
 		{

@@ -1204,7 +1204,7 @@ void C_BasePlayer::TeamChange( int iNewTeam )
 void C_BasePlayer::UpdateFlashlight()
 {
 	// The dim light is the flashlight.
-	if ( IsEffectActive( EF_DIMLIGHT ) )
+	if (IsEffectActive(EF_DIMLIGHT))
 	{
 		if (!m_pFlashlight)
 		{
@@ -1218,10 +1218,10 @@ void C_BasePlayer::UpdateFlashlight()
 		}
 
 		Vector vecForward, vecRight, vecUp;
-		EyeVectors( &vecForward, &vecRight, &vecUp );
+		EyeVectors(&vecForward, &vecRight, &vecUp);
 
 		// Update the light with the new position and direction.		
-		m_pFlashlight->UpdateLight( EyePosition(), vecForward, vecRight, vecUp, FLASHLIGHT_DISTANCE );
+		m_pFlashlight->UpdateLight(EyePosition(), vecForward, vecRight, vecUp, FLASHLIGHT_DISTANCE);
 	}
 	else if (m_pFlashlight)
 	{

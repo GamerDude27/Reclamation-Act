@@ -2,6 +2,38 @@
 {
 	TextureData
 	{
+		"binoculars43"
+		{
+				"file"		"hud/binoculars_43"
+				"x"			"0"
+				"y"			"0"
+				"width"		"1024"
+				"height"	"512"
+		}
+		"binoculars169"
+		{
+				"file"		"hud/binoculars_169"
+				"x"			"0"
+				"y"			"0"
+				"width"		"1024"
+				"height"	"512"
+		}
+		"binoculars32"
+		{
+				"file"		"hud/binoculars_32"
+				"x"			"0"
+				"y"			"0"
+				"width"		"1024"
+				"height"	"512"
+		}
+		"binoculars1610"
+		{
+				"file"		"hud/binoculars_1610"
+				"x"			"0"
+				"y"			"0"
+				"width"		"1024"
+				"height"	"512"
+		}
 		"scope43"
 		{
 				"file"		"hud/scope_43"

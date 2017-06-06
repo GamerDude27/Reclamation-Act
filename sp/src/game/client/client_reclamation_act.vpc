@@ -1,11 +1,11 @@
 //-----------------------------------------------------------------------------
-//	CLIENT_EPISODIC.VPC
+//	CLIENT_RECLAMATION_ACT.VPC
 //
 //	Project Script
 //-----------------------------------------------------------------------------
 
 $Macro SRCDIR		"..\.."
-$Macro GAMENAME 	"reclamation_act"
+$Macro GAMENAME 	"ReclamationAct"
 
 $Include "$SRCDIR\game\client\client_base.vpc"
 
@@ -13,7 +13,7 @@ $Configuration
 {
 	$Compiler
 	{
-		$AdditionalIncludeDirectories	".\hl2;.\hl2\elements;$SRCDIR\game\shared\hl2;$SRCDIR\game\shared\episodic;..\..\public;$BASE"
+		$AdditionalIncludeDirectories	".\hl2;.\hl2\elements;$SRCDIR\game\shared\hl2;$SRCDIR\game\shared\episodic;.\episodic;..\..\public;$BASE"
 		$PreprocessorDefinitions		"$BASE;HL2_CLIENT_DLL;HL2_EPISODIC;RECLAMATION_ACT"
 	}
 }
@@ -26,6 +26,12 @@ $Project "Client (Reclamation Act)"
 		$File	"c_team_objectiveresource.cpp"
 		$File	"c_team_objectiveresource.h"
 
+		$Folder	"RA DLL"
+		{
+			$File	"hud_binoculars.cpp"
+			$File	"hud_scope.cpp"
+		}
+		
 		$Folder	"HL2 DLL"
 		{
 			$File	"$SRCDIR\game\shared\hl2\basehlcombatweapon_shared.cpp"
@@ -126,10 +132,5 @@ $Project "Client (Reclamation Act)"
 			$File	"hl2\vgui_rootpanel_hl2.cpp"
 			$File	"episodic\c_npc_puppet.cpp"
 		}
-		$Folder	"RA DLL"
-		{
-			$File	"hud_scope.cpp"
-		}
 	}
-	
 }

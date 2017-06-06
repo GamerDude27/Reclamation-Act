@@ -1,11 +1,11 @@
 //-----------------------------------------------------------------------------
-//	SERVER_EPISODIC.VPC
+//	SERVER_RECLAMATION_ACT.VPC
 //
 //	Project Script
 //-----------------------------------------------------------------------------
 
 $Macro SRCDIR		"..\.."
-$Macro GAMENAME 	"reclamation_act"
+$Macro GAMENAME 	"ReclamationAct"
 
 $Include "$SRCDIR\game\server\server_base.vpc"
 
@@ -47,6 +47,10 @@ $Project "Server (Reclamation Act)"
 		$File	"$SRCDIR\game\shared\vehicle_choreo_generic_shared.h"
 		$File	"$SRCDIR\game\shared\weapon_parse_default.cpp"
 
+		$Folder	"RA DLL"
+		{
+		}
+		
 		$Folder	"HL2 DLL"
 		{
 			$File	"$SRCDIR\game\shared\episodic\achievements_ep1.cpp"

@@ -46,6 +46,7 @@ void RegisterUserMessages( void )
 	usermessages->Register( "AchievementEvent", -1 );
 	usermessages->Register( "UpdateJalopyRadar", -1 );
 	usermessages->Register( "ShowScope", 1 ); // Show the crossbow scope
+	usermessages->Register( "ShowBinoculars", 1 ); // Show the binoculars overlay
 
 #ifndef _X360
 	// NVNT register haptic user messages
